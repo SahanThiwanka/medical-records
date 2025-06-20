@@ -143,7 +143,11 @@ export function NavbarDemo() {
                       key={idx}
                       onClick={() => {
                         setIsPatientOpen(false);
-                        item.action ? item.action() : router.push(item.link!);
+                        if (item.action) {
+                          item.action();
+                        } else if (item.link) {
+                          router.push(item.link);
+                        }
                       }}
                       className="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-neutral-800 text-sm"
                     >
@@ -207,9 +211,11 @@ export function NavbarDemo() {
                   key={idx}
                   onClick={() => {
                     setIsMobileMenuOpen(false);
-                    item.action
-                      ? item.action()
-                      : item.link && router.push(item.link);
+                    if (item.action) {
+                      item.action();
+                    } else if (item.link) {
+                      router.push(item.link);
+                    }
                   }}
                   className="w-full text-left py-2 px-4 text-neutral-700 dark:text-neutral-200 hover:bg-gray-200 dark:hover:bg-neutral-700"
                 >
