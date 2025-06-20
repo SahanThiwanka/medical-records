@@ -18,7 +18,7 @@ import { ethers } from "ethers";
 // Declare global Ethereum object
 declare global {
   interface Window {
-    ethereum?: any;
+    ethereum?: ethers.Eip1193Provider;
   }
 }
 
@@ -31,9 +31,6 @@ type MenuItem = {
 export function NavbarDemo() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showDoctorMenu, setShowDoctorMenu] = useState(false);
-  const [showPatientMenu, setShowPatientMenu] = useState(false);
-  const [showRegisterMenu, setShowRegisterMenu] = useState(false);
 
   const handleViewDoctor = async () => {
     if (typeof window.ethereum !== "undefined") {
@@ -112,7 +109,11 @@ export function NavbarDemo() {
                       key={idx}
                       onClick={() => {
                         setIsDoctorOpen(false);
-                        item.action ? item.action() : router.push(item.link!);
+                        if (item.action) {
+                          item.action();
+                        } else if (item.link) {
+                          router.push(item.link);
+                        }
                       }}
                       className="w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-neutral-800 text-sm"
                     >
@@ -219,7 +220,7 @@ export function NavbarDemo() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-        <DummyContent />
+      <DummyContent />
     </div>
   );
 }
