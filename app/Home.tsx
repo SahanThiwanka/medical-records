@@ -40,7 +40,10 @@ export default function HomePage() {
           <Image
             src="https://integrisok.com/-/media/Blog/19-April-May-June-July-Aug/Man-at-the-doctors-office.ashx?revision=ccc13a85-78b3-422e-bbc0-e82a7ad64e22"
             alt="doctor"
+            width={600}
+            height={400}
             className="rounded-lg shadow-lg w-full"
+            unoptimized={true}
           />
         </div>
       </section>
