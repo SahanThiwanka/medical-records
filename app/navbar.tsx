@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ethers } from "ethers";
+import HomePage from "./hero";
 
 // Declare global Ethereum object
 declare global {
@@ -77,7 +78,7 @@ export function NavbarDemo() {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full bg-gradient-to-br from-gray-900 via-black to-gray-950">
       <Navbar>
         <NavBody>
           <NavbarLogo />
@@ -226,7 +227,7 @@ export function NavbarDemo() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-      <DummyContent />
+      <HomePage />
     </div>
   );
 }
