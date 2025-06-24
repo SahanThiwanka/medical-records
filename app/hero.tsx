@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
@@ -36,7 +37,7 @@ export default function HomePage() {
               to access their own health reports and information.
             </p>
           </div>
-          <img
+          <Image
             src="https://integrisok.com/-/media/Blog/19-April-May-June-July-Aug/Man-at-the-doctors-office.ashx?revision=ccc13a85-78b3-422e-bbc0-e82a7ad64e22"
             alt="doctor"
             className="rounded-lg shadow-lg w-full"
