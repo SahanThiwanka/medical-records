@@ -25,7 +25,6 @@ type Patient = {
 
 const ViewPatientProfile = () => {
   const [patient, setPatient] = useState<Patient | null>(null);
-  const [wallet, setWallet] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -39,7 +38,6 @@ const ViewPatientProfile = () => {
         const provider = new ethers.BrowserProvider(window.ethereum);
         const accounts = await provider.send("eth_requestAccounts", []);
         const user = accounts[0];
-        setWallet(user);
 
         const contract = await getRecordContract();
 
