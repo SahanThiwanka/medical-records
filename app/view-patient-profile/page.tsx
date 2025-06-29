@@ -72,9 +72,13 @@ const ViewPatientProfile = () => {
         });
 
         setLoading(false);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error(err);
-        setError("Error loading profile.");
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Error loading patient profile.");
+        }
         setLoading(false);
       }
     };

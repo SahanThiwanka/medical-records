@@ -56,9 +56,13 @@ const ViewDoctorProfile = () => {
         });
 
         setLoading(false);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error(err);
-        setError("Unauthorized or unable to load doctor profile.");
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Error loading doctor profile.");
+        }
         setLoading(false);
       }
     };
