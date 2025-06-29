@@ -33,22 +33,6 @@ export function NavbarDemo() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleViewDoctor = async () => {
-    if (typeof window.ethereum !== "undefined") {
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const accounts = await provider.send("eth_requestAccounts", []);
-      router.push(`/doctor/${accounts[0]}`);
-    }
-  };
-
-  const handleViewPatient = async () => {
-    if (typeof window.ethereum !== "undefined") {
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const accounts = await provider.send("eth_requestAccounts", []);
-      router.push(`/record/${accounts[0]}`);
-    }
-  };
-
   const navItems: MenuItem[] = [
     { name: "Home", link: "/" },
     { name: "Dashboard", link: "/dashboard" },
@@ -56,14 +40,14 @@ export function NavbarDemo() {
   ];
 
   const doctorMenu: MenuItem[] = [
-    { name: "View Profile", action: handleViewDoctor },
+    { name: "View Profile", link: "/view-doctor-profile" },
     { name: "Edit Profile", link: "/edit-doctor" },
     { name: "Make Medical Record", link: "/make-appointment" },
     { name: "Update Medical Record", link: "/edit-appointment" },
   ];
 
   const patientMenu: MenuItem[] = [
-    { name: "View Profile", action: handleViewPatient },
+    { name: "View Profile", link: "/view-patient-profile" },
     { name: "Edit Profile", link: "/edit-patient" },
     { name: "Allow Access", link: "/approve-doctor" },
     { name: "Revoke Access", link: "/revoke-doctor" },
