@@ -1,5 +1,5 @@
-import { NavbarDemo } from "./navbar";
+import HomePage from "./Home";
 
 export default function Home() {
-  return <NavbarDemo />;
+  return <HomePage />;
 }
