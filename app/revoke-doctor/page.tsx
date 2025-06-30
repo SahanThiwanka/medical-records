@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { getRecordContract } from "@/lib/contract";
-import { ethers } from "ethers";
 
 const RevokeDoctorAccess = () => {
   const [doctorAddress, setDoctorAddress] = useState("");
