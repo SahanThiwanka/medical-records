@@ -5,7 +5,6 @@ import { getRecordContract } from "@/lib/contract";
 import { ethers } from "ethers";
 
 const Dashboard = () => {
-  const [wallet, setWallet] = useState("");
   const [patientCount, setPatientCount] = useState<number | null>(null);
   const [doctorCount, setDoctorCount] = useState<number | null>(null);
   const [error, setError] = useState("");
@@ -18,7 +17,6 @@ const Dashboard = () => {
         const provider = new ethers.BrowserProvider(window.ethereum);
         const accounts = await provider.send("eth_requestAccounts", []);
         const user = accounts[0];
-        setWallet(user);
 
         const contract = await getRecordContract();
         const patients = await contract.getPatientCount();

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getRecordContract } from "@/lib/contract";
 import { ethers } from "ethers";
 
@@ -19,7 +19,7 @@ const ApproveDoctorPage = () => {
       if (!window.ethereum) throw new Error("MetaMask not found");
 
       const provider = new ethers.BrowserProvider(window.ethereum);
-      const accounts = await provider.send("eth_requestAccounts", []);
+      await provider.send("eth_requestAccounts", []);
       const contract = await getRecordContract();
 
       const tx = await contract.grantPermission(doctorAddress);
@@ -27,7 +27,7 @@ const ApproveDoctorPage = () => {
 
       setMessage("Permission granted to the doctor successfully.");
       setDoctorAddress("");
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       setError("Failed to grant permission. Make sure address is correct and try again.");
     }
