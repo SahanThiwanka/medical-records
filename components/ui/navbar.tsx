@@ -32,7 +32,6 @@ const SimpleNavbar = () => {
     setDropdown(null);
   };
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -44,11 +43,11 @@ const SimpleNavbar = () => {
   }, []);
 
   return (
-    <nav ref={navRef} className="sticky top-0 z-50 bg-black text-white shadow-md">
+    <nav ref={navRef} className="sticky top-0 z-50 bg-gradient-to-br from-gray-900 via-black to-gray-950 text-white shadow-md">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <div className="text-xl font-bold cursor-pointer" onClick={() => router.push("/")}>MedBlockChain</div>
 
-        <div className="hidden md:flex gap-6 items-center">
+        <div className="hidden md:flex gap-8 items-center">
           <button onClick={() => handleNavigate("/")} className="hover:text-blue-400">Home</button>
           <button onClick={() => handleNavigate("/dashboard")} className="hover:text-blue-400">Dashboard</button>
           <button onClick={() => handleNavigate("/list")} className="hover:text-blue-400">Records List</button>
@@ -83,7 +82,6 @@ const SimpleNavbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {dropdown === "mobile" && (
         <div className="md:hidden bg-black text-white px-6 pb-4 space-y-3">
           <button onClick={() => handleNavigate("/")} className="block w-full text-left">Home</button>
