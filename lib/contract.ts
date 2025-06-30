@@ -1,13 +1,13 @@
-import { ethers } from "ethers";
-import RecordABI from "./Record.json"; // make sure you have ABI here
+import { ethers, Eip1193Provider } from "ethers";
+import RecordABI from "./Record.json";
 
 declare global {
   interface Window {
-    ethereum?: any;
+    ethereum?: Eip1193Provider;
   }
 }
 
-export const CONTRACT_ADDRESS = "0x1640f626e7c6B8cE13A3b6DC35874C070856eCf6"; // Replace with your deployed contract address
+export const CONTRACT_ADDRESS = "0x1640f626e7c6B8cE13A3b6DC35874C070856eCf6";
 
 export const getRecordContract = async () => {
   if (!window.ethereum) {

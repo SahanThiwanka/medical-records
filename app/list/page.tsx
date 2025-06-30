@@ -38,7 +38,7 @@ export default function RecordsListPage() {
           setRole("patient");
           const patientAppointments = await contract.getAppointments(current);
           setAppointments(
-            patientAppointments.map((a: any) => ({
+            patientAppointments.map((a: Appointment) => ({
               ...a,
               date: a.date,
               time: a.time,
@@ -58,8 +58,9 @@ export default function RecordsListPage() {
 
           for (const addr of patientAddresses) {
             const patientAppointments = await contract.getAppointments(addr);
-            const related = patientAppointments.filter((a: any) =>
-              a.doctoraddr.toLowerCase() === current.toLowerCase()
+            const related = patientAppointments.filter(
+              (a: Appointment) =>
+                a.doctoraddr.toLowerCase() === current.toLowerCase()
             );
             doctorAppointments.push(...related);
           }
@@ -80,7 +81,9 @@ export default function RecordsListPage() {
   return (
     <div className="max-w-5xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">
-        {role === "patient" ? "My Appointments" : "Appointments with My Patients"}
+        {role === "patient"
+          ? "My Appointments"
+          : "Appointments with My Patients"}
       </h1>
       {appointments.length === 0 ? (
         <p className="text-gray-500">No appointments found.</p>
@@ -95,10 +98,16 @@ export default function RecordsListPage() {
               <p className="text-sm text-gray-500">Time: {a.time}</p>
               <p className="text-sm text-gray-500">Status: {a.status}</p>
               <p className="text-sm text-gray-500">Diagnosis: {a.diagnosis}</p>
-              <p className="text-sm text-gray-500">Prescription: {a.prescription}</p>
-              <p className="text-sm text-gray-500">Description: {a.description}</p>
+              <p className="text-sm text-gray-500">
+                Prescription: {a.prescription}
+              </p>
+              <p className="text-sm text-gray-500">
+                Description: {a.description}
+              </p>
               {role === "doctor" && (
-                <p className="text-xs text-gray-400">Patient: {a.patientaddr}</p>
+                <p className="text-xs text-gray-400">
+                  Patient: {a.patientaddr}
+                </p>
               )}
               {role === "patient" && (
                 <p className="text-xs text-gray-400">Doctor: {a.doctoraddr}</p>

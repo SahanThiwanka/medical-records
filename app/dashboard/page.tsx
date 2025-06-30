@@ -16,7 +16,7 @@ const Dashboard = () => {
 
         const provider = new ethers.BrowserProvider(window.ethereum);
         const accounts = await provider.send("eth_requestAccounts", []);
-        const user = accounts[0];
+        accounts[0];
 
         const contract = await getRecordContract();
         const patients = await contract.getPatientCount();

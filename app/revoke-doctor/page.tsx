@@ -21,8 +21,7 @@ const RevokeDoctorAccess = () => {
     setMessage("");
 
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum as any);
-      const signer = await provider.getSigner();
+      const provider = new ethers.BrowserProvider(window.ethereum as ethers.Eip1193Provider);
       const contract = await getRecordContract();
 
       const tx = await contract.revokePermission(doctorAddress);
@@ -43,7 +42,7 @@ const RevokeDoctorAccess = () => {
       <h1 className="text-2xl font-bold mb-4">Revoke Doctor Access</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block mb-1">Doctor's Ethereum Address</label>
+          <label className="block mb-1">Doctor&apos;s Ethereum Address</label>
           <input
             type="text"
             className="w-full p-2 border rounded"

@@ -52,7 +52,6 @@ const MakeAppointment = () => {
       }
       const provider = new ethers.BrowserProvider(window.ethereum);
       await provider.send("eth_requestAccounts", []);
-      const signer = await provider.getSigner();
       const contract = await getRecordContract();
 
       const tx = await contract.createAppointment(
