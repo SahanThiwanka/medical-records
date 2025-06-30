@@ -21,7 +21,7 @@ const RevokeDoctorAccess = () => {
     setMessage("");
 
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum as ethers.Eip1193Provider);
+      // const provider = new ethers.BrowserProvider(window.ethereum as ethers.Eip1193Provider); // ❌ Remove this
       const contract = await getRecordContract();
 
       const tx = await contract.revokePermission(doctorAddress);

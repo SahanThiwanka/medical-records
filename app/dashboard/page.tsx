@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { getRecordContract } from "@/lib/contract";
-import { ethers } from "ethers";
 
 const Dashboard = () => {
   const [patientCount, setPatientCount] = useState<number | null>(null);
@@ -13,10 +12,6 @@ const Dashboard = () => {
     const loadDashboard = async () => {
       try {
         if (!window.ethereum) throw new Error("MetaMask not found");
-
-        const provider = new ethers.BrowserProvider(window.ethereum);
-        const accounts = await provider.send("eth_requestAccounts", []);
-        accounts[0];
 
         const contract = await getRecordContract();
         const patients = await contract.getPatientCount();
@@ -40,8 +35,16 @@ const Dashboard = () => {
       <h1 className="text-3xl font-bold mb-6">System Dashboard</h1>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <Card title="Total Registered Patients" value={patientCount} color="blue" />
-        <Card title="Total Registered Doctors" value={doctorCount} color="green" />
+        <Card
+          title="Total Registered Patients"
+          value={patientCount}
+          color="blue"
+        />
+        <Card
+          title="Total Registered Doctors"
+          value={doctorCount}
+          color="green"
+        />
       </div>
     </div>
   );
